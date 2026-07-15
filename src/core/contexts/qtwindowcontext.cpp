@@ -219,7 +219,12 @@ namespace QWK {
                     }
                     case Moving:
                     case Resizing: {
-                        handled = true;
+                        if (!(me->buttons() & Qt::LeftButton)) {
+                            m_windowStatus = Idle;
+                            updateCursorShape();
+                        } else {
+                            handled = true;
+                        }
                         break;
                     }
                 }
